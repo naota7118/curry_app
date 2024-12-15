@@ -1,0 +1,47 @@
+@startuml curry
+  entity "customers" {
+    *customer_id
+    --
+    customer_name
+  }
+
+  entity "categories" {
+    *category_id
+    --
+    category_name
+  }
+
+  entity "spicinesses" {
+    *spiciness_id
+    --
+    spiciness_name
+  }
+
+  entity "ricesizes" {
+    *ricesize_id
+    --
+    ricesize_name
+  }
+
+  entity "curries" {
+    *category_id
+    --
+    curry_name
+    curry_price
+  }
+
+  entity "orders" {
+    *order_id
+    --
+    curry_id<<FK>>
+    spiciness_id<<FK>>
+    ricesize_id<<FK>>
+    order_price
+  }
+
+  categories ||--|{ curries
+  customers |o--o{ orders
+  spicinesses |o--o{ orders
+  ricesizes |o--o{ orders
+  curries |o--o{ orders
+@enduml
